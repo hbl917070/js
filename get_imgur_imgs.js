@@ -1,3 +1,8 @@
+/**
+*   最後更新日期：2017-04-02
+*   
+*/
+
 
 /*產生物件*/
 var obj_get_url = document.createElement("div");
