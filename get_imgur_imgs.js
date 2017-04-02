@@ -8,12 +8,13 @@ document.body.appendChild(obj_get_url);
 try {
 
 	/*imgur 專用的圖片取網址方式*/
-	var int_nub = window.runSlots["_item"]["album_images"]["count"];
+	var int_nub = window.runSlots["item"]["album_images"]["count"];
 
+	
 	if (int_nub != undefined) {
 		var sum = "";
 		for (var i = 0; i < int_nub; i++) {
-			var obj_img = window.runSlots["_item"]["album_images"]["images"][i];
+			var obj_img = window.runSlots["item"]["album_images"]["images"][i];
 			sum += "http://i.imgur.com/" + obj_img["hash"] + obj_img["ext"] + "\n";
 		}
 		document.getElementById("get_url_box_txt").innerHTML = sum;
