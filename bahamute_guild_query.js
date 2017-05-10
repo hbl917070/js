@@ -4,6 +4,8 @@
  * 
  * 最後更新日期：2017-05-10
  * 
+ * 版本：1.0.1
+ * 
  * 作者：hbl917070（深海異音）
  * 小屋：https://home.gamer.com.tw/homeindex.php?owner=hbl917070
  * 
@@ -122,26 +124,35 @@ var s_html = `
 
 
 if (document.getElementById("d_box") == undefined && document.getElementById("MSG-box2") != undefined) {//避免重複產生界面
-    //產生html界面
+
+
+    ///
+    ///產生html界面
+    ///
     var div = document.createElement("div");
     div.innerHTML = s_html;
     document.body.appendChild(div);
+
+    var copy_alert = window.alert;//備份alert()
 }
 
 
-
-
-//覆寫alert
-var copy_alert = window.alert;
+///
+///覆寫alert
+///
 window.alert = function (s) {
     if (document.getElementById("d_box") == undefined) {
         copy_alert(s);
     } else {
-        if (s == "沒有更早的動態了") {
+        if (s == "沒有更早的動態了" || s == "資料錯誤") {
             fun_end();
         }
     }
 }
+
+
+
+
 
 ///
 ///點擊開始執行
@@ -156,15 +167,20 @@ document.getElementById("but_del").onclick = function () {
     fun_del();//開始
 };
 
+
 ///
 ///關閉視窗
 ///
 document.getElementById("but_close").onclick = function () {
-    var child = document.getElementById("d_box");
-    child.parentNode.removeChild(child);//刪除視窗元素
+
     fun_end();//結束
     window.alert = copy_alert;//把alert改回去
+
+    var child = document.getElementById("d_box");
+    child.parentNode.removeChild(child);//刪除視窗元素
+
 };
+
 
 ///
 ///暫停
@@ -172,7 +188,6 @@ document.getElementById("but_close").onclick = function () {
 document.getElementById("but_stop").onclick = function () {
     fun_end();//結束
 };
-
 
 
 ///
@@ -187,6 +202,7 @@ function fun_end() {
     document.getElementById("div_output").innerHTML = "完成<br>共取得：" + MSG_box2.length + "筆";
     document.getElementById("but_del").innerHTML = "再次執行";
 }
+
 
 ///
 ///開始執行
@@ -223,7 +239,7 @@ function fun_del() {
     }
 
     document.getElementById("moreBtn").click();//點擊下一頁
-
 }
+
 
 
