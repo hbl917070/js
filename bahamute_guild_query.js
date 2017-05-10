@@ -1,7 +1,13 @@
-﻿// JavaScript source code
-
-
-
+﻿/**
+ * 
+ * 說明：在巴哈姆特的公會中，只觀看特定一個人的文章
+ * 
+ * 最後更新日期：2017-05-10
+ * 
+ * 作者：hbl917070（深海異音）
+ * 小屋：https://home.gamer.com.tw/homeindex.php?owner=hbl917070
+ * 
+ */
 
 var MSG_box2 = document.getElementsByClassName('MSG-box2');//每一筆文章
 
@@ -74,7 +80,7 @@ var s_html = `
         </style>
 
         <div class="d_box_title">公會文章篩選器</div>
-        <button id="but_close"></button>
+        <button id="but_close" title="關閉篩選視窗"></button>
 
         <div style="margin:auto;width:500px;margin-top:20px;">
 
@@ -115,7 +121,7 @@ var s_html = `
 `;
 
 
-if (document.getElementById("d_box") == undefined) {//避免重複產生界面
+if (document.getElementById("d_box") == undefined && MSG_box2 != undefined) {//避免重複產生界面
     //產生html界面
     var div = document.createElement("div");
     div.innerHTML = s_html;
@@ -157,12 +163,13 @@ document.getElementById("but_close").onclick = function () {
     var child = document.getElementById("d_box");
     child.parentNode.removeChild(child);//刪除視窗元素
     fun_end();//結束
+    window.alert = copy_alert;//把alert改回去
 };
 
 ///
 ///暫停
 ///
-document.getElementById("but_stop").onclick = function () {  
+document.getElementById("but_stop").onclick = function () {
     fun_end();//結束
 };
 
@@ -172,7 +179,6 @@ document.getElementById("but_stop").onclick = function () {
 ///操作完成
 ///
 function fun_end() {
-
     //初始化
     bool_stop = true;
     document.getElementById("but_del").style.display = "inline";
@@ -207,16 +213,16 @@ function fun_del() {
         child.parentNode.removeChild(child);//刪除元素
     }
 
-    document.getElementById("div_output").innerHTML = "執行中：" + MSG_box2.length + "筆";
+    document.getElementById("div_output").innerHTML = "執行中：" + MSG_box2.length + "筆";//更新已經取得的筆數
 
-    if (MSG_box2.length > int_max || bool_stop) {
+    if ((MSG_box2.length > int_max) || bool_stop) {
         fun_end();
         return;
     } else {
-        setTimeout("fun_del()", 1500);
+        setTimeout("fun_del()", 1500);//1.5秒後重新執行
     }
 
-    document.getElementById("moreBtn").click();
+    document.getElementById("moreBtn").click();//點擊下一頁
 
 }
 
