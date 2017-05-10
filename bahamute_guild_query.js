@@ -121,7 +121,7 @@ var s_html = `
 `;
 
 
-if (document.getElementById("d_box") == undefined && MSG_box2 != undefined) {//避免重複產生界面
+if (document.getElementById("d_box") == undefined && document.getElementById("MSG-box2") != undefined) {//避免重複產生界面
     //產生html界面
     var div = document.createElement("div");
     div.innerHTML = s_html;
